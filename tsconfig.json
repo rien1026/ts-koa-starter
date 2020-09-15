@@ -3,10 +3,11 @@
 		"target": "es6",
 		"module": "commonjs",
 		"sourceMap": true,
-		"outDir": "dist",
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"rootDir": "./",
+		"outDir": ".build"
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*.ts"]
 }

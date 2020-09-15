@@ -1,4 +1,3 @@
-const API_URL =
-    'https://yurjy21r13.execute-api.ap-northeast-2.amazonaws.com/prod/';
+const API_URL = '';
 
 export const Constants = { API_URL };

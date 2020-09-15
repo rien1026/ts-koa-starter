@@ -4,6 +4,8 @@ import render from 'koa-ejs';
 import Router from 'koa-router';
 import koaStatic from 'koa-static';
 import { HomeController } from './controllers';
+import watch from 'node-watch';
+import * as shell from 'shelljs';
 
 const app = new Koa();
 const router = new Router();
@@ -27,4 +29,11 @@ app.use(router.allowedMethods());
 
 app.listen(3000, () => {
 	console.log('Web Server is listening to 3000 port.');
+});
+
+watch('src/public', async (event, name) => {
+	console.log(event, name);
+	shell.cp('-R', 'src/public', '.build/src');
+	shell.cp('-R', 'src/app.ts', 'src/_watchfile.ts');
+	shell.rm('src/_watchfile.ts');
 });
