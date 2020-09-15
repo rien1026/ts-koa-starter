@@ -6,6 +6,7 @@ import koaStatic from 'koa-static';
 import { HomeController } from './controllers';
 import watch from 'node-watch';
 import * as shell from 'shelljs';
+import { MainController } from './controllers/MainController';
 
 const app = new Koa();
 const router = new Router();
@@ -23,6 +24,7 @@ render(app, {
 
 // index
 router.get('/', HomeController.getHome);
+router.get('/main', MainController.getMain);
 
 app.use(router.routes());
 app.use(router.allowedMethods());

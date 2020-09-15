@@ -5,7 +5,7 @@
 	"scripts": {
 		"serve": "node .build/src/app.js",
 		"start": "npm run build && npm run copy-static-assets && npm run serve",
-		"watch": "tsc-watch --onSuccess \"npm run serve\"",
+		"watch": "npm run copy-static-assets && tsc-watch --onSuccess \"npm run serve\"",
 		"build": "tsc",
 		"copy-static-assets": "ts-node copyStaticAssets.ts"
 	},
