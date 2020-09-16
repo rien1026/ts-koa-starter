@@ -1,4 +1,9 @@
 import * as dotenv from 'dotenv';
+import fs from 'fs';
+
+if (!fs.existsSync('.env')) {
+	fs.writeFileSync('.env', 'TOKEN=' + '\nIMAGE_PATH=' + 'images/');
+}
 
 dotenv.config({ path: '.env' });
 
@@ -8,7 +13,7 @@ const API_INFO = {
 
 const COMMON_INFO = {
 	TOKEN: process.env['TOKEN'],
-	IMAGE_PATH: process.env['IMAGE_PATH'] || 'images/',
+	IMAGE_PATH: process.env['IMAGE_PATH'],
 	ALIVE_DT: new Date().getTime() + 300000,
 };
 

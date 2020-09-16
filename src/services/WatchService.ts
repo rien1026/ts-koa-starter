@@ -47,6 +47,7 @@ const removeJob = () => {
 	}
 
 	watchJob.close();
+	watchJob = undefined;
 };
 
-export const WatchService = { createWatchJob, removeJob };
+export const WatchService = { createWatchJob, removeJob, watchJob };

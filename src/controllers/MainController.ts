@@ -1,9 +1,22 @@
 import Koa from 'koa';
-import { HistoryService } from '../services';
+import { HistoryService, ScheduleService, WatchService } from '../services';
 import { Constants } from '../utils';
 import moment from 'moment-timezone';
+import isOnline from 'is-online';
 
 const getMain = async (ctx: Koa.Context) => {
+	let isConnected = await isOnline({ timeout: 2000 });
+
+	if (!isConnected) {
+		return await ctx.render('/pages/main', {
+			isConnected,
+			chartDailyLabel: [],
+			chartDailyDataList: [],
+			chartTwoWeeksLabel: [],
+			chartTwoWeeksDataList: [],
+		});
+	}
+
 	let historyList = await HistoryService.getHistoryList(false, true);
 
 	let chartDailyDataMap = {};
@@ -44,11 +57,20 @@ const getMain = async (ctx: Koa.Context) => {
 		chartDailyDataList.push(chartDailyDataMap[i]);
 	}
 
+	if (!ScheduleService.scheduleJob) {
+		ScheduleService.createScheduleJob();
+	}
+
+	if (!WatchService.watchJob) {
+		WatchService.createWatchJob();
+	}
+
 	return await ctx.render('/pages/main', {
-		chartDailyLabel: chartDailyDataMapKeys,
-		chartDailyDataList,
-		chartTwoWeeksLabel: chartTwoWeeksDataMapKeys,
-		chartTwoWeeksDataList,
+		isConnected,
+		chartDailyLabel: chartDailyDataMapKeys || [],
+		chartDailyDataList: chartDailyDataList || [],
+		chartTwoWeeksLabel: chartTwoWeeksDataMapKeys || [],
+		chartTwoWeeksDataList: chartTwoWeeksDataList || [],
 	});
 };
 

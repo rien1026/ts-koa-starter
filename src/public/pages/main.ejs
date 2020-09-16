@@ -8,13 +8,21 @@
 		<!-- Right Panel -->
 		<div id="right-panel" class="right-panel">			
 			<div class="contents mt-5">
-				<div class="col-lg-12" style="height: 120px;"></div>				
-				<div class="col-lg-12 d-flex justify-content-center" style="height: 240px;">
-					<div class="loader"></div>
-				</div>				
-				<div class="col-lg-12 d-flex justify-content-center" style="height: 240px;">
-					<h2>이미지를 감지 중입니다.</h2>
-				</div>				
+				<div class="col-lg-12" style="height: 120px;"></div>
+				<% if(isConnected == true) { %>
+					<div class="col-lg-12 d-flex justify-content-center" style="height: 240px;">
+						<div class="loader"></div>		
+					</div>
+					<div class="col-lg-12 d-flex justify-content-center" style="height: 120px;">					
+						<h2>이미지를 감지 중입니다.</h2>            		
+					</div>				
+				<% } else { %>
+					<div class="alert alert-danger col-lg-12 d-flex justify-content-center">
+						<h4 class="alert-heading">인터넷이 연결되어 있지 않습니다.</h4>
+					</div>
+					<div class="col-lg-12 d-flex justify-content-center" style="height: 120px;">											
+					</div>
+				<% } %>
 				<div class="col-lg-6 mt-5">
 					<div class="card">
 						<div class="card-body">
@@ -148,7 +156,7 @@
 			var todayChart = new Chart(todayChartBox, {
 				type: 'line',
 				data: {
-					labels: chartDailyLabel.split(','),
+					labels: chartDailyLabel.split(','),					
 					type: 'line',
 					defaultFontFamily: 'Montserrat',
 					datasets: [
@@ -205,7 +213,11 @@
 								display: true,
 								gridLines: {
 									display: false,
-									drawBorder: false,
+									drawBorder: false,									
+								},
+								ticks: {         								
+									suggestedMin: 0,
+									stepSize: 1
 								},
 								scaleLabel: {
 									display: true,
@@ -282,7 +294,11 @@
 								display: true,
 								gridLines: {
 									display: false,
-									drawBorder: false,
+									drawBorder: false,									
+								},
+								ticks: {         								
+									suggestedMin: 0,
+									stepSize: 1
 								},
 								scaleLabel: {
 									display: true,

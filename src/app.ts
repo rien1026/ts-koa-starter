@@ -10,6 +10,7 @@ import * as shell from 'shelljs';
 import { MainController } from './controllers/MainController';
 import { Constants } from './utils';
 import { HistoryService } from './services';
+import { SettingController } from './controllers/SettingController';
 
 const app = new Koa();
 const router = new Router();
@@ -30,7 +31,7 @@ app.use(async (ctx: Koa.Context, next: Koa.Next) => {
 	try {
 		console.log(ctx.request.method + '---' + ctx.request.url);
 
-		if (ctx.request.method === 'GET' && !Constants.COMMON_INFO.TOKEN) {
+		if (ctx.request.url !== '/' && ctx.request.method === 'GET' && !Constants.COMMON_INFO.TOKEN) {
 			return ctx.redirect('/');
 		}
 
@@ -40,9 +41,14 @@ app.use(async (ctx: Koa.Context, next: Koa.Next) => {
 
 // index
 router.get('/', HomeController.getHome);
-router.post('/token', HomeController.postToken);
+
+// main
 router.get('/main', MainController.getMain);
 router.post('/alive-dt', MainController.postAliveDt);
+
+// setting
+router.get('/setting', SettingController.getSetting);
+router.post('/info', SettingController.postInfo);
 
 app.use(router.routes());
 app.use(router.allowedMethods());

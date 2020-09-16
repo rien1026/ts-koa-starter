@@ -22,6 +22,7 @@ const removeScheduleJob = () => {
 		return;
 	}
 	schedule.cancelJob(scheduleJob);
+	scheduleJob = undefined;
 };
 
-export const ScheduleService = { createScheduleJob, removeScheduleJob };
+export const ScheduleService = { createScheduleJob, removeScheduleJob, scheduleJob };
