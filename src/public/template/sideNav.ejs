@@ -11,4 +11,15 @@
 			</ul>
 		</div>
 	</nav>
+	<script>
+		var interval;
+		if (!interval) {
+			interval = setInterval(() => {
+				$.ajax({
+					url: '/alive-dt',
+					method: 'POST',
+				});
+			}, 10000);
+		}
+	</script>
 </aside>
