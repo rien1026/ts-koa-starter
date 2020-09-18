@@ -8,7 +8,7 @@ if (!fs.existsSync('.env')) {
 dotenv.config({ path: '.env' });
 
 const API_INFO = {
-	API_URL: 'https://sob19r4255.execute-api.ap-northeast-2.amazonaws.com/dev/app',
+	API_URL: 'https://rxaxw2txs7.execute-api.ap-northeast-2.amazonaws.com/dev/app',
 };
 
 const COMMON_INFO = {
