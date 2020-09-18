@@ -1,21 +1,7 @@
-import * as dotenv from 'dotenv';
-import fs from 'fs';
-
-if (!fs.existsSync('.env')) {
-	fs.writeFileSync('.env', 'TOKEN=' + '\nIMAGE_PATH=' + 'images/');
-}
-
-dotenv.config({ path: '.env' });
-
 const API_INFO = {
-	API_URL: 'https://rxaxw2txs7.execute-api.ap-northeast-2.amazonaws.com/dev/app',
+	API_URL: '',
 };
 
-const COMMON_INFO = {
-	TOKEN: process.env['TOKEN'],
-	IMAGE_PATH: process.env['IMAGE_PATH'],
-	DEFAULT_IMAGE_PATH: 'images/',
-	ALIVE_DT: new Date().getTime() + 300000,
-};
+const COMMON_INFO = {};
 
 export const Constants = { API_INFO, COMMON_INFO };
