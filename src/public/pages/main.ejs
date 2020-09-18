@@ -9,16 +9,22 @@
 		<div id="right-panel" class="right-panel">			
 			<div class="contents mt-5">
 				<div class="col-lg-12" style="height: 120px;"></div>
-				<% if(isConnected == true) { %>
+				<% if(isConnected == true && watchResult == true) { %>
 					<div class="col-lg-12 d-flex justify-content-center" style="height: 240px;">
 						<div class="loader"></div>		
 					</div>
 					<div class="col-lg-12 d-flex justify-content-center" style="height: 120px;">					
 						<h2>이미지를 감지 중입니다.</h2>            		
 					</div>				
-				<% } else { %>
-					<div class="alert alert-danger col-lg-12 d-flex justify-content-center">
-						<h4 class="alert-heading">인터넷이 연결되어 있지 않습니다.</h4>
+				<% } else { %>					
+					<div class="alert alert-danger col-lg-12 d-flex justify-content-center">						
+						<% if(isConnected == false) { %>
+							<h4 class="alert-heading">인터넷이 연결되어 있지 않습니다.</h4>
+						<% } %>
+						<% if(watchResult == false) { %>
+							<h4 class="alert-heading">이미지 감지 경로가 잘못되었습니다.</h4>
+						<% } %>
+						<br>
 					</div>
 					<div class="col-lg-12 d-flex justify-content-center" style="height: 120px;">											
 					</div>

@@ -14,6 +14,7 @@ const API_INFO = {
 const COMMON_INFO = {
 	TOKEN: process.env['TOKEN'],
 	IMAGE_PATH: process.env['IMAGE_PATH'],
+	DEFAULT_IMAGE_PATH: 'images/',
 	ALIVE_DT: new Date().getTime() + 300000,
 };
 

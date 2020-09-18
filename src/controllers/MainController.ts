@@ -57,12 +57,13 @@ const getMain = async (ctx: Koa.Context) => {
 		chartDailyDataList.push(chartDailyDataMap[i]);
 	}
 
+	let watchResult = true;
 	if (!ScheduleService.scheduleJob) {
 		ScheduleService.createScheduleJob();
 	}
 
 	if (!WatchService.watchJob) {
-		WatchService.createWatchJob();
+		watchResult = WatchService.createWatchJob();
 	}
 
 	return await ctx.render('/pages/main', {
@@ -71,6 +72,7 @@ const getMain = async (ctx: Koa.Context) => {
 		chartDailyDataList: chartDailyDataList || [],
 		chartTwoWeeksLabel: chartTwoWeeksDataMapKeys || [],
 		chartTwoWeeksDataList: chartTwoWeeksDataList || [],
+		watchResult,
 	});
 };
 
